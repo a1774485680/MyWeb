@@ -17,7 +17,7 @@ public class PassageWriteUtil {
 		String passagepath =System.getProperties().getProperty("user.home");
 		passagepath=passagepath+File.separator+"passagetxt";
 		File file = new File(passagepath);
-	
+        System.out.println("passgaeStr = [" + passgaeStr + "], passageName = [" + passageName + "]");
        if (!file.exists()) {
            file.mkdirs();
        }

@@ -10,7 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
 
-public class ParamsUtil {
+public class
+ParamsUtil {
 	/**
      * 将url参数转换成map
      * @param param aa=11&bb=22&cc=33

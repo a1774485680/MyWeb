@@ -146,11 +146,12 @@ public class IssueServiceImp implements IIssueServices {
 
 	@Override
 	public String updatewritePassage(String username, String Ptitle, String Pclassify,String passageStr,String pbrief) {
-		
+		System.out.println("sadddddddddd"+"  "+username);
+		System.out.println("sadddddddddd"+"  "+Ptitle);
 		List<Passage> passage1 = passagedao.selectByAuthorAndName(username, Ptitle);
 		String fal="";
 		if(passage1.toString().equals("[]")){	
-			fal="true";
+			fal="false";
 		}else{
 			//定义文章路径
 			String passageName =System.getProperties().getProperty("user.home");

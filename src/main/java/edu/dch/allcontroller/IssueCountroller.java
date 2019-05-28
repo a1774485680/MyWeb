@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import edu.dch.utils.MyParamsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -104,8 +105,8 @@ public class IssueCountroller {
 	}
 	@RequestMapping("/publish.do")
 	public void publish1(HttpServletResponse response,HttpServletRequest res) throws IOException{		
-		String param = ParamsUtil.getStreamToString(res); // 接收流参数并转成字符串
-		Map<String, String> params = ParamsUtil.getUrlParams(param); 
+		String param = MyParamsUtil.getStreamToString(res); // 接收流参数并转成字符串
+		Map<String, String> params = MyParamsUtil.getUrlParams(param,4);
 		Set<String> keys =params.keySet();   //此行可省略，直接将map.keySet()写在for-each循环的条件中
 		
 		String Pclassify = params.get("Pclassify");
@@ -133,18 +134,23 @@ public class IssueCountroller {
 		out.close();
 	}
 	@RequestMapping("/updatepublish.do")
-	public void updatepublish(HttpServletResponse response,HttpServletRequest res) throws IOException{		
-		String param = ParamsUtil.getStreamToString(res); // 接收流参数并转成字符串
-		Map<String, String> params = ParamsUtil.getUrlParams(param); 
+	public void updatepublish(HttpServletResponse response,HttpServletRequest res) throws IOException{
+		String param = MyParamsUtil.getStreamToString(res); // 接收流参数并转成字符串
+		Map<String, String> params = MyParamsUtil.getUrlParams(param,4);
 		Set<String> keys =params.keySet();   //此行可省略，直接将map.keySet()写在for-each循环的条件中
-		
-		String Pclassify = params.get("Pclassify");
-		String pbrief = params.get("pbrief");
-		String Ptitle = params.get("Ptitle");
+
+		for (String s:keys) {
+			System.out.println(s+"       键值对"+params.get(s).toString());
+		}
+		String Pclassify =params.get("Pclassify"); //res.getParameter("Pclassify");//
+		String pbrief =params.get("pbrief");// res.getParameter("pbrief");//params.get("pbrief");
+		String Ptitle =params.get("Ptitle");//params.get("pbrief");
+		String html = params.get("textHtml");//params.get("textHtml");
 		HttpSession session=res.getSession();
 		res.getInputStream();
 		Userlogin user= (Userlogin)session.getAttribute("user");
-		String html = params.get("textHtml");
+
+		System.out.println(html);
 		String fal = IssueService.updatewritePassage(user.getUsername(), Ptitle, Pclassify, html, pbrief);	
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out =response.getWriter();
