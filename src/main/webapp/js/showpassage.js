@@ -32,20 +32,35 @@ $(function (){
 	
 	editor.create();
 	editor.$textElem.attr('contenteditable', false);
+    $("body").append("<div id='mask1'></div>");
+    $("#mask1").addClass("mask1").fadeIn("slow");
+    $("#Div_issue_hint").fadeIn("slow");
+    var a,b;
 	$.post("/MyWeb/ShowPassage/passageLoad.do",{name:theRequest.authorName,title:theRequest.title},function(data){
 	
 		editor.txt.html(data);
-		
-		
+		a=1;
+        if(a==1&&b==1){
+
+            $("#Div_issue_hint").fadeOut("fast");
+            $("#mask1").css({ display: 'none' });
+        }
 	},"text");
 	$.post("/MyWeb/ShowPassage/passageinform.do",{name:theRequest.authorName,title:theRequest.title},function(data){
 		
 		//editor.txt.html(data);
+
 		$("#h2_title").html(data[0].ptitle);
 		$("#span_data").html("时间 "+data[0].pdate+"&nbsp;&nbsp;&nbsp");
 		$("#span_visit").html("浏览量 "+data[0].pvisit+"&nbsp;&nbsp;&nbsp");
 		$("#span_author").html("作者 "+data[0].username+"&nbsp;&nbsp;&nbsp");
+		b=1;
 		//$("#h2-title").html(data[0].ptitle);
-		
+        if(a==1&&b==1){
+
+            $("#Div_issue_hint").fadeOut("fast");
+            $("#mask1").css({ display: 'none' });
+        }
 	},"json");
+
 });

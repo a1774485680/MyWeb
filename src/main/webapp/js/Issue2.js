@@ -71,11 +71,21 @@ $(function (){
 							var title=$(this).html();
 							title = title.substr(0, title.length - 5); 
 							console.log(title);
+                            $("body").append("<div id='mask2'></div>");
+                            $("#mask2").addClass("mask1").fadeIn("slow");
+                            $("#Div_issue_hint01").fadeIn("slow");
+                            var a,b;
 							$.post("/MyWeb/Issue/updataPassage.do",{title:title},function(data){
 								
 								editor.txt.html(data);
 								console.log("点击了该方法");
 								$("#Apublish").html("修改文章");
+								a=1;
+                                if(a==1&&b==1){
+
+                                    $("#Div_issue_hint01").fadeOut("fast");
+                                    $("#mask2").css({ display: 'none' });
+                                }
 							},"text");
 							$.post("/MyWeb/Issue/getinformPassage.do",{title:title},function(data){
 								$("#Iinputtitle").val(data[0].ptitle);
@@ -83,6 +93,12 @@ $(function (){
 								$("#Ibrief").val(data[0].pbrief);
 								$("#Iselect").attr("selected", data[0].pclassify);
 								$("#Iinputtitle").attr("disabled","disabled");
+								b=1;
+                                if(a==1&&b==1){
+
+                                    $("#Div_issue_hint01").fadeOut("fast");
+                                    $("#mask2").css({ display: 'none' });
+                                }
 							},"json");
 							
 						});
@@ -222,6 +238,7 @@ $(function (){
 			var pbrief=$.trim($("#Ibrief").val());
 			var Pclassify=$.trim($("#Iselect option:selected").val());
 			var textHtml=editor.txt.html();
+            console.log(textHtml);
 			var text1=editor.txt.html();
 			//发送请求
 			if(textHtml!=""&&Ptitle!=""&&Pclassify!=""&&pbrief!=""){
@@ -229,16 +246,18 @@ $(function (){
 				$("body").append("<div id='mask1'></div>");
 				$("#mask1").addClass("mask1").fadeIn("slow");
 				$("#Div_issue_hint").fadeIn("slow");
-				
+
 				$.post("/MyWeb/Issue/updatepublish.do",{Ptitle:Ptitle,pbrief:pbrief,Pclassify:Pclassify,textHtml:textHtml},function(data){
+
 					console.log("csccsc");
+
 					if(data=="true"){
 						alert("修改文章成功");
 						$("#Div_issue_hint").fadeOut("fast");
 						$("#mask1").css({ display: 'none' });
 						window.open("Issue.html","_self");
 					}else{
-						alert("发布失败 该文章标题已经使用");
+						alert("修改失败出现未知错误");
 						$("#Div_issue_hint").fadeOut("fast");
 						$("#mask1").css({ display: 'none' });
 						window.open("Issue.html","_self");
