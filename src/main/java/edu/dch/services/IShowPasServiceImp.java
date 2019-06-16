@@ -29,10 +29,17 @@ public class IShowPasServiceImp implements IShowPassageServices {
 	@Override
 	public String SelectByNameAndTitle(String name, String title) {
 		// TODO Auto-generated method stub
+		List<Passage> as= passdao.selectByAuthorAndName(name,title);
+		if(as.toString().equals("[]")){
+
+			return "没有该文章";
+		}
+
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
 		System.out.println(df.format(new Date()));
 		String passName=name+"@"+title; 
 		String txtPassageToRead="";
+
 		try {
 			txtPassageToRead = passread.txtPassageToRead(passName);
 		} catch (IOException e) {
@@ -48,6 +55,12 @@ public class IShowPasServiceImp implements IShowPassageServices {
 	public String SelectByNameAndTitleOfpassageinfrom(String name, String title) {
 		// TODO Auto-generated method stub
 		List<Passage> as= passdao.selectByAuthorAndName(name,title);
+		if(as.toString().equals("[]")){
+
+			return "{\"success\":0}";
+
+		}
+
 		//创建一个json对象
 				ObjectMapper mapper=new ObjectMapper();
 					String a="";//json返回的数组

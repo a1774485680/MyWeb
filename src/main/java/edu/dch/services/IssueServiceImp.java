@@ -79,9 +79,7 @@ public class IssueServiceImp implements IIssueServices {
 		
 		List<Passage> StringList= passagedao.SelectByUserName(username);
 
-		for (Passage passage : StringList) {
-			System.out.println(passage.publish);
-		}
+
 		String strJSON="";
 		ObjectMapper mapper=new ObjectMapper();
 		try {
@@ -90,7 +88,7 @@ public class IssueServiceImp implements IIssueServices {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("strJSON="+strJSON);
+
 		return strJSON;
 	}
 	//该方法的作用是获得用户又多少页
@@ -120,7 +118,7 @@ public class IssueServiceImp implements IIssueServices {
 			//定义文章路径
 			String passageName =System.getProperties().getProperty("user.home");
 			passageName=passageName+File.separator+"passagetxt"+File.separator+username+"@"+Ptitle+".txt";
-			System.out.println(passageName);
+
 			//将文章类容写到响应的文章路径中
 			try {
 				passWrite.writeTotxt(passageStr, passageName);
@@ -130,7 +128,7 @@ public class IssueServiceImp implements IIssueServices {
 			}
 			//获取当前日期
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-			System.out.println(df.format(new Date()));// new Date()为获取当前系统时间
+
 			String nowdata=df.format(new Date());
 			int userId = LoginDao.SelectIdByuserName(username);//获得用户id
 
@@ -139,15 +137,14 @@ public class IssueServiceImp implements IIssueServices {
 			fal="true";
 		}else{
 			fal="false";
-			System.out.println("錯誤的執行了這個方法");
+
 		}
 		return fal;
 	}
 
 	@Override
 	public String updatewritePassage(String username, String Ptitle, String Pclassify,String passageStr,String pbrief) {
-		System.out.println("sadddddddddd"+"  "+username);
-		System.out.println("sadddddddddd"+"  "+Ptitle);
+
 		List<Passage> passage1 = passagedao.selectByAuthorAndName(username, Ptitle);
 		String fal="";
 		if(passage1.toString().equals("[]")){	
@@ -158,7 +155,7 @@ public class IssueServiceImp implements IIssueServices {
 			passageName =passageName+File.separator+"passagetxt"+File.separator+username+"@"+Ptitle+".txt";
 			//将文章类容写到响应的文章路径中
 			try {
-				System.out.println(passageName);
+
 				passWrite.writeTotxt(passageStr, passageName);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -166,7 +163,7 @@ public class IssueServiceImp implements IIssueServices {
 			}
 			//获取当前日期
 			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
-			System.out.println("当前日期："+df.format(new Date()));// new Date()为获取当前系统时间
+
 			String nowdata=df.format(new Date());
 			int userId = LoginDao.SelectIdByuserName(username);//获得用户id
 

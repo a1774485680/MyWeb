@@ -37,7 +37,12 @@ $(function (){
     $("#Div_issue_hint").fadeIn("slow");
     var a,b;
 	$.post("/MyWeb/ShowPassage/passageLoad.do",{name:theRequest.authorName,title:theRequest.title},function(data){
-	
+
+		if(data=="没有该文章"){
+            editor.txt.html(data);
+            $("#Div_issue_hint").fadeOut("fast");
+            $("#mask1").css({ display: 'none' });
+		}
 		editor.txt.html(data);
 		a=1;
         if(a==1&&b==1){

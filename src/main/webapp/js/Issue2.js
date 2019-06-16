@@ -79,6 +79,7 @@ $(function (){
 								
 								editor.txt.html(data);
 								console.log("点击了该方法");
+
 								$("#Apublish").html("修改文章");
 								a=1;
                                 if(a==1&&b==1){
@@ -91,7 +92,8 @@ $(function (){
 								$("#Iinputtitle").val(data[0].ptitle);
 								console.log(data[0].ptitle);
 								$("#Ibrief").val(data[0].pbrief);
-								$("#Iselect").attr("selected", data[0].pclassify);
+								$("#Iselect").val(data[0].pclassify);
+                                console.log(data[0].pclassify);
 								$("#Iinputtitle").attr("disabled","disabled");
 								b=1;
                                 if(a==1&&b==1){

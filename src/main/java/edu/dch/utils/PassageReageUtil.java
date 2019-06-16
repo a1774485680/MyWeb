@@ -22,12 +22,13 @@ public class PassageReageUtil {
 				FileReader	fr=new FileReader(passagepath+File.separator+passageName+".txt");
 				BufferedReader bufr = new BufferedReader(fr);
 				while((passageStr = bufr.readLine())!=null){
-					
+					int i=0;
+
 					s=passageStr;
 					
 				}
 				fr.close();	
-				System.out.println("∂¡ÕÍ≥…");
+
 				return s;
 	}
 	

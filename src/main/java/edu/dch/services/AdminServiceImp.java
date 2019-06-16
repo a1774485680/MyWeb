@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import edu.dch.dao.IPassageDao;
 import edu.dch.dao.IadminDao;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import edu.dch.bean.Passage;
@@ -19,9 +20,11 @@ import edu.dch.utils.MybatisSqlSessionutils;
 
 @Component("AdminServiceImp")
 public class AdminServiceImp implements IAdminService {
+
 	@Resource(name="iadminDao")
+
 	public IadminDao adminDao;
-	@Resource(name="IPassageDao")
+	@Resource(name="IPassageDao" )
 	public IPassageDao passdao;
 	public AdminServiceImp(){
 	}

@@ -23,7 +23,7 @@ $(function (){
 			 } 
 		 },"json");
 	 });
-	 $("#identily").blur(function(){			
+	 /*$("#identily").blur(function(){
 		 var identily=$(this).val();//获得当前元素的值
 		$.post("/MyWeb/Register/identilyVerify.do",{identily:identily},function(data){
 			
@@ -44,7 +44,7 @@ $(function (){
 				 }
 			 } 
 		 },"json");
-	 });
+	 });*/
 	 $("#userpassword").blur(function(){
 		 var text=$(this).val();
 		 var regular=/^(?![0-9]*$)[a-zA-Z0-9]{6,16}$/;
@@ -81,7 +81,7 @@ $(function (){
 		 var s_repassword=$("#s_repassword");
 		 var s_identily=$("#s_identily");
 		 var span= $("#s_sub");
-		 if(fal && s_password.text()=="" &&s_identily.text()=="" && s_repassword.text()=="" && $("#userpassword").val()!=""){
+		 if(fal && s_password.text()==""  && s_repassword.text()=="" && $("#userpassword").val()!=""){
 			 $("#f_sub").submit();
 		 }else{ 
 			

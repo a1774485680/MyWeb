@@ -59,7 +59,7 @@ public class IssueCountroller {
 		String StringJson=IssueService.PassageLoad(user.getUsername());
 		//设置字符编码
 		response.setCharacterEncoding("utf-8");
-		System.out.println(StringJson);
+
 		PrintWriter out =response.getWriter();
 		out.print(StringJson);
 		out.close();
@@ -139,9 +139,7 @@ public class IssueCountroller {
 		Map<String, String> params = MyParamsUtil.getUrlParams(param,4);
 		Set<String> keys =params.keySet();   //此行可省略，直接将map.keySet()写在for-each循环的条件中
 
-		for (String s:keys) {
-			System.out.println(s+"       键值对"+params.get(s).toString());
-		}
+
 		String Pclassify =params.get("Pclassify"); //res.getParameter("Pclassify");//
 		String pbrief =params.get("pbrief");// res.getParameter("pbrief");//params.get("pbrief");
 		String Ptitle =params.get("Ptitle");//params.get("pbrief");
@@ -150,11 +148,11 @@ public class IssueCountroller {
 		res.getInputStream();
 		Userlogin user= (Userlogin)session.getAttribute("user");
 
-		System.out.println(html);
+
 		String fal = IssueService.updatewritePassage(user.getUsername(), Ptitle, Pclassify, html, pbrief);	
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out =response.getWriter();
-		System.out.println("fal     "+fal);
+
 		out.print(fal);
 		out.close();
 	}

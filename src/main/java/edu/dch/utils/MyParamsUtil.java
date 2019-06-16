@@ -17,7 +17,7 @@ MyParamsUtil {
      * @return
      */
    	public static Map<String, String> getUrlParams(String param,int count) {
-        System.out.println("param = [" + param + "]");
+
         Map<String, String> map = new HashMap<>(0);
         if (StringUtils.isBlank(param)) {
             return map;
@@ -40,7 +40,7 @@ MyParamsUtil {
      * @return
      */
     public static String getUrlParamsByMap(Map<String, Object> map) {
-        System.out.println("param = [" +1+ "]");
+
         if (map == null) {
             return "";
         }
@@ -64,7 +64,7 @@ MyParamsUtil {
     public static String getStreamToString(HttpServletRequest request) {
 
         try {
-            System.out.println("param = [" +1+ "]");
+
             InputStream inputStream;
             inputStream = request.getInputStream();
  
